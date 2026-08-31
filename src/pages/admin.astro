@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Admin Dashboard | IK'S ARCHIVE Enterprise"
+  description="Internal admin monitoring dashboard for IK'S ARCHIVE website traffic, lead inquiries, and chat metrics."
+>
+  <div class="min-h-screen bg-[#07121C] text-[#F3EFD8] pt-24 pb-16 px-6">
+    <div class="max-w-7xl mx-auto space-y-8">
+      
+      <!-- Top Title Bar -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#0C5278]/50 pb-6">
+        <div>
+          <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-1">
+            ENTERPRISE CONTROL PANEL
+          </span>
+          <h1 class="font-serif text-3xl md:text-4xl font-bold">IK'S ARCHIVE Overview</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1A7AB0]/20 border border-[#1A7AB0]/50 text-xs font-bold text-[#1A7AB0]">
+            <span class="w-2 h-2 rounded-full bg-[#1A7AB0] animate-ping"></span>
+            SYSTEM OPERATIONAL
+          </span>
+          <button 
+            id="clear-analytics-btn"
+            class="px-4 py-2 rounded-xl bg-[#8F3D1C]/30 border border-[#8F3D1C] text-[#F3EFD8] hover:bg-[#8F3D1C] text-xs font-bold transition-all"
+          >
+            Clear Log Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Metric Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Metric 1 -->
+        <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 backdrop-blur-md">
+          <span class="text-[10px] text-[#C9923A] font-bold uppercase tracking-wider block mb-2">Total Page Views</span>
+          <div id="stat-views" class="font-serif text-3xl font-bold text-[#F3EFD8]">0</div>
+          <span class="text-[10px] text-[#F3EFD8]/60 mt-2 block">Tracked sessions</span>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 backdrop-blur-md">
+          <span class="text-[10px] text-[#C9923A] font-bold uppercase tracking-wider block mb-2">Button Clicks & Conversions</span>
+          <div id="stat-clicks" class="font-serif text-3xl font-bold text-[#1A7AB0]">0</div>
+          <span class="text-[10px] text-[#F3EFD8]/60 mt-2 block">Selar & External outbound links</span>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 backdrop-blur-md">
+          <span class="text-[10px] text-[#C9923A] font-bold uppercase tracking-wider block mb-2">AI Chatbot Queries</span>
+          <div id="stat-chats" class="font-serif text-3xl font-bold text-[#F3EFD8]">0</div>
+          <span class="text-[10px] text-[#F3EFD8]/60 mt-2 block">Automated user interactions</span>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 backdrop-blur-md">
+          <span class="text-[10px] text-[#C9923A] font-bold uppercase tracking-wider block mb-2">Form Leads</span>
+          <div id="stat-leads" class="font-serif text-3xl font-bold text-[#C9923A]">0</div>
+          <span class="text-[10px] text-[#F3EFD8]/60 mt-2 block">Contact section inquiries</span>
+        </div>
+      </div>
+
+      <!-- Event Logs Table -->
+      <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 backdrop-blur-md space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="font-serif font-bold text-lg text-[#F3EFD8]">Real-time Event Stream</h3>
+          <span class="text-xs text-[#F3EFD8]/50">Auto-refreshing live log</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-[#1A7AB0]/30 text-[#C9923A] uppercase tracking-wider text-[10px]">
+                <th class="py-3 px-4">Event Type</th>
+                <th class="py-3 px-4">Details / Label</th>
+                <th class="py-3 px-4">Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="events-table-body" class="divide-y divide-[#1A7AB0]/10 font-light">
+              <tr>
+                <td colspan="3" class="py-6 text-center text-[#F3EFD8]/50">No activity recorded yet. Browse the site to generate logs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { getStoredEvents } from '../lib/analytics';
+
+  function renderDashboard() {
+    const events = getStoredEvents();
+    
+    // Calculate Stats
+    const views = events.filter(e => e.type === 'pageview').length;
+    const clicks = events.filter(e => e.type === 'click').length;
+    const chats = events.filter(e => e.type === 'chat_query').length;
+    const leads = events.filter(e => e.type === 'form_submit').length;
+
+    const viewsEl = document.getElementById('stat-views');
+    const clicksEl = document.getElementById('stat-clicks');
+    const chatsEl = document.getElementById('stat-chats');
+    const leadsEl = document.getElementById('stat-leads');
+    const tbody = document.getElementById('events-table-body');
+
+    if (viewsEl) viewsEl.textContent = views.toString();
+    if (clicksEl) clicksEl.textContent = clicks.toString();
+    if (chatsEl) chatsEl.textContent = chats.toString();
+    if (leadsEl) leadsEl.textContent = leads.toString();
+
+    if (tbody) {
+      if (events.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" class="py-6 text-center text-[#F3EFD8]/50">No activity recorded yet. Browse the site to generate logs.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = events.slice(0, 15).map(event => {
+        let badgeColor = 'bg-[#1A7AB0]/20 text-[#1A7AB0] border-[#1A7AB0]/40';
+        if (event.type === 'click') badgeColor = 'bg-[#C9923A]/20 text-[#C9923A] border-[#C9923A]/40';
+        if (event.type === 'chat_query') badgeColor = 'bg-purple-500/20 text-purple-300 border-purple-500/40';
+        if (event.type === 'form_submit') badgeColor = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
+
+        const formattedTime = new Date(event.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        return `
+          <tr class="hover:bg-[#1A7AB0]/10 transition-colors">
+            <td class="py-3 px-4">
+              <span class="px-2 py-1 rounded-md text-[9px] font-bold border uppercase tracking-wider ${badgeColor}">
+                ${event.type}
+              </span>
+            </td>
+            <td class="py-3 px-4 text-[#F3EFD8]">${event.label}</td>
+            <td class="py-3 px-4 text-[#F3EFD8]/60 font-mono text-[10px]">${formattedTime}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderDashboard();
+
+    document.getElementById('clear-analytics-btn')?.addEventListener('click', () => {
+      localStorage.removeItem('iks_archive_analytics_events');
+      renderDashboard();
+    });
+  });
+</script>

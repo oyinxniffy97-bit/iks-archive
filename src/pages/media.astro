@@ -1,0 +1,108 @@
+---
+// src/pages/media.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
+
+const mediaServices = [
+  {
+    title: "Short-Form Video Editing (Reels, TikTok, Shorts)",
+    tag: "Video Production",
+    desc: "High-retention editing featuring custom captions, visual hooks, sound effects, motion graphics, and speed ramps optimized for social media growth."
+  },
+  {
+    title: "Brand Identity & Graphic Design",
+    tag: "Visual Design",
+    desc: "Comprehensive brand kit setup including logo development, color palette creation, Canva template systems, flyers, and digital media kits."
+  },
+  {
+    title: "YouTube Video Production & Trailers",
+    tag: "YouTube Media",
+    desc: "End-to-end media editing for daily devotionals, book trailers, video podcasts, and long-form YouTube channel content."
+  },
+  {
+    title: "Copywriting & Content Strategy",
+    tag: "Content Strategy",
+    desc: "Persuasive sales copywriting for ebook launch campaigns, landing pages, corporate profiles, and social media scripts."
+  }
+];
+
+const videoGallery = [
+  { title: "Open Heavens Daily Devotional", youtubeId: "EbndNgmz7Cs", category: "Daily Devotional" },
+  { title: "Open Heavens Daily Devotional", youtubeId: "_tUSrTTxsXc", category: "Daily Devotional" },
+  { title: "Open Heavens Daily Devotional", youtubeId: "zr4UqLjwUfc", category: "Daily Devotional" },
+  { title: "Open Heavens Daily Devotional", youtubeId: "j98LbKr_ZsE", category: "Daily Devotional" },
+  { title: "Chief Tortoise: Who chop my yam?!", youtubeId: "Ggp9zOzjrS8", category: "Animation" }
+];
+---
+
+<Layout 
+  title="Multimedia & Visual Solutions | IK'S ARCHIVE Warri"
+  description="Professional video editing, graphic design, YouTube trailers, and branding solutions provided by IK'S ARCHIVE Multimedia Press in Warri, Nigeria."
+>
+  <main>
+    <section class="bg-[#07121C] py-20 px-6 border-b border-[#0C5278]/40 text-center">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block">VISUAL & MEDIA PRODUCTION</span>
+        <h1 class="font-serif text-4xl md:text-6xl font-bold text-[#F3EFD8]">Multimedia Services</h1>
+        <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light max-w-2xl mx-auto">
+          High-impact video editing, visual design, and brand storytelling designed to build authority and drive digital engagement.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C]">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {mediaServices.map((service) => (
+            <div class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-xl flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+              <div>
+                <span class="text-[9px] font-bold text-[#8F3D1C] uppercase tracking-wider block mb-2">{service.tag}</span>
+                <h2 class="font-serif text-2xl font-bold text-[#07121C] mb-3">{service.title}</h2>
+                <p class="text-xs text-[#07121C]/75 leading-relaxed font-light mb-6">{service.desc}</p>
+              </div>
+              <a href="/contact" class="text-xs font-bold text-[#1A7AB0] hover:text-[#0C5278] uppercase tracking-wider">
+                Book Media Project →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#07121C] py-20 px-6 text-[#F3EFD8] border-t border-[#0C5278]/40">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between">
+          <div>
+            <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-2">PRODUCED REELS</span>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold">Featured Video Showcase</h2>
+          </div>
+          <a href="https://www.youtube.com/@ojosundayikponmownsa4782" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 text-xs font-bold text-[#1A7AB0] uppercase tracking-wider">
+            Subscribe on YouTube →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {videoGallery.map((video) => (
+            <div class="bg-[#07121C] rounded-2xl overflow-hidden shadow-2xl border border-[#C9923A]/30 flex flex-col justify-between">
+              <div class="relative w-full aspect-[9/16] bg-black">
+                <iframe 
+                  class="w-full h-full object-cover"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="p-4 bg-[#07121C] border-t border-[#0C5278]">
+                <span class="text-[9px] font-bold text-[#C9923A] uppercase block mb-1">{video.category}</span>
+                <h3 class="font-serif text-xs font-bold line-clamp-1">{video.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <AIChatbot />
+</Layout>

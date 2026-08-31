@@ -1,0 +1,81 @@
+---
+// src/pages/hub.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
+
+const hubServices = [
+  {
+    title: "Document Processing & High-Speed Printing",
+    desc: "Professional manuscript formatting, scanning, high-resolution color printing, binding, and official document creation.",
+    badge: "Business Support"
+  },
+  {
+    title: "Creator Workspaces & Internet Access",
+    desc: "Reliable high-speed internet connectivity, dedicated desk setups, and charging stations tailored for freelancers, students, and digital creators.",
+    badge: "Co-Working"
+  },
+  {
+    title: "Hardware & Media Station Support",
+    desc: "Access to video recording gear, digital editing computers, sound equipment, and high-definition presentation screens.",
+    badge: "Tech Hardware"
+  },
+  {
+    title: "Community Mentorship & Training Center",
+    desc: "Localized physical venue for hands-on digital skills workshops, youth academic tutoring, and business networking sessions in Warri.",
+    badge: "Community"
+  }
+];
+---
+
+<Layout 
+  title="Warri Resource & Innovation Hub | IK'S ARCHIVE Delta State"
+  description="Explore physical and digital workspace infrastructure, printing services, document processing, and tech hardware access at Warri Center, Delta State."
+>
+  <main>
+    <section class="bg-[#07121C] py-20 px-6 border-b border-[#0C5278]/40 text-center">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block">PHYSICAL & DIGITAL INFRASTRUCTURE</span>
+        <h1 class="font-serif text-4xl md:text-6xl font-bold text-[#F3EFD8]">Warri Innovation Hub</h1>
+        <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light max-w-2xl mx-auto">
+          Providing high-speed printing, document processing, co-working desks, and hardware facilities for creators and business leaders in Delta State.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C]">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {hubServices.map((hub) => (
+            <div class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-xl flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-[#1A7AB0]/10 border border-[#1A7AB0]/30 text-[9px] font-bold text-[#1A7AB0] uppercase tracking-wider inline-block mb-4">
+                  {hub.badge}
+                </span>
+                <h2 class="font-serif text-2xl font-bold text-[#07121C] mb-3">{hub.title}</h2>
+                <p class="text-xs text-[#07121C]/75 leading-relaxed font-light mb-6">{hub.desc}</p>
+              </div>
+              <a href="/contact" class="text-xs font-bold text-[#8F3D1C] hover:text-[#702F15] uppercase tracking-wider">
+                Book Hub Facility →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#07121C] py-16 px-6 text-[#F3EFD8] border-t border-[#0C5278]/40">
+      <div class="max-w-4xl mx-auto text-center space-y-4 bg-[#0C5278]/20 border border-[#1A7AB0]/30 p-8 rounded-2xl">
+        <span class="text-2xl">📍</span>
+        <h2 class="font-serif text-2xl font-bold">Visit Our Physical Center</h2>
+        <p class="text-xs text-[#F3EFD8]/80 font-light">Warri, Delta State, Nigeria</p>
+        <div class="pt-2">
+          <a href="/contact" class="inline-block px-6 py-3 rounded-xl bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] text-xs font-bold uppercase tracking-widest shadow-md">
+            Get Directions / Inquire
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <AIChatbot />
+</Layout>

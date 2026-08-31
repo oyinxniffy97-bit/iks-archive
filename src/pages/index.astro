@@ -1,17 +1,574 @@
 ---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
 
+// Exact Verified YouTube Shorts Video Data
+const featuredVideos = [
+  {
+    title: "Open Heavens Daily Devotional",
+    category: "Daily Devotional",
+    youtubeId: "EbndNgmz7Cs", 
+    description: "Daily spiritual reflection and guidance from Open Heavens."
+  },
+  {
+    title: "Open Heavens Daily Devotional",
+    category: "Daily Devotional",
+    youtubeId: "_tUSrTTxsXc", 
+    description: "Daily spiritual message on God's love and grace."
+  },
+  {
+    title: "Open Heavens Daily Devotional",
+    category: "Daily Devotional",
+    youtubeId: "zr4UqLjwUfc", 
+    description: "Empowered Men 2026 — Faith, purpose, and spiritual growth."
+  },
+  {
+    title: "Open Heavens Daily Devotional",
+    category: "Daily Devotional",
+    youtubeId: "j98LbKr_ZsE", 
+    description: "God Do Not... — Inspiring daily word and teachings."
+  },
+  {
+    title: "Chief Tortoise: Who chop my yam?!",
+    category: "Animation & Storytelling",
+    youtubeId: "Ggp9zOzjrS8", 
+    description: "A funny and engaging traditional folklore animated story."
+  }
+];
+
+// Verified Selar eBooks & Literary Catalog
+const featuredBooks = [
+  {
+    title: "UHỌNMHỌN",
+    subtitle: "Life is Greater Than Possession",
+    author: "Ojo Sunday Ikponmwonsa",
+    category: "Fiction / Debut Novel",
+    description: "Moving from rural poverty in Edo land to the unforgiving streets of Rome, Italy, this story explores a family's desperate pursuit of wealth through a dark spiritual covenant.",
+    selarUrl: "https://selar.com/tb15750g41",
+    badge: "Debut Novel",
+    accentBg: "bg-[#8F3D1C]/20",
+    borderCol: "border-[#8F3D1C]/60",
+    hoverBorder: "hover:border-[#8F3D1C]"
+  },
+  {
+    title: "BLOODLIES",
+    subtitle: "A Novella of Family, Mischief, and the Meaning of Blood",
+    author: "IK'S ARCHIVE Press",
+    category: "PDF eBook",
+    description: "Every family has secrets. Caught between a stern father and protective mother, Tomiwa's life unravels when a stranger claims to be his true biological father.",
+    selarUrl: "https://selar.com/j4z0n99rk4",
+    badge: "Bestseller",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#C9923A]/40",
+    hoverBorder: "hover:border-[#1A7AB0]"
+  },
+  {
+    title: "FATHER'S SHADOW",
+    subtitle: "A Novella of Inheritance, Rage, and Redemption",
+    author: "IK'S ARCHIVE Press",
+    category: "Novella",
+    description: "When three generations of the Erhabor family converge at the police station in Effurun, decades of buried domestic trauma and rage break wide open.",
+    selarUrl: "https://selar.com/3g88328sy7",
+    badge: "Featured",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#1A7AB0]/40",
+    hoverBorder: "hover:border-[#1A7AB0]"
+  },
+  {
+    title: "VESSELS OF MERCY",
+    subtitle: "A Novella of Grace, Regret, and Restoration",
+    author: "IK'S ARCHIVE Press",
+    category: "2026 Release",
+    description: "Set in Warri, following Tamar and Caro—two women who make the same mistake at sixteen and take two entirely different roads toward grace and restoration.",
+    selarUrl: "https://selar.com/p65387k4vc",
+    badge: "Selar Press",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#C9923A]/50",
+    hoverBorder: "hover:border-[#C9923A]"
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+  title="IK'S ARCHIVE | Publishing, Digital Education & Media Enterprise"
+  description="IK'S ARCHIVE blends creative media production, digital education masterclasses (AI, Canva, CapCut), original book publishing, and the Warri Innovation Hub."
+>
+
+  <main>
+    <!-- SECTION 1: DARK INK NAVY HERO -->
+    <section class="relative bg-[#07121C] py-20 md:py-28 px-6 overflow-hidden reveal-section" aria-label="Hero Overview">
+      
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#1A7AB0]/20 rounded-full blur-[140px] pointer-events-none animate-pulse"></div>
+
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        
+        <!-- Hero Text Column -->
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0C5278]/40 border border-[#1A7AB0]/60 shadow-[0_0_15px_rgba(26,122,176,0.25)]">
+            <span class="w-2 h-2 rounded-full bg-[#1A7AB0] animate-ping"></span>
+            <span class="text-[#F3EFD8] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+              HYBRID MULTIMEDIA & PUBLISHING ENTERPRISE
+            </span>
+          </div>
+
+          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#F3EFD8] leading-[1.1] tracking-tight">
+            Premium Content. <br />
+            <span class="text-[#1A7AB0]">Intelligent</span> <span class="text-[#8F3D1C] font-serif italic font-normal">Publishing.</span>
+          </h1>
+
+          <p class="text-[#F3EFD8]/80 text-sm md:text-base leading-relaxed max-w-md font-light">
+            IK'S ARCHIVE is a multi-disciplinary hub bridging creative media production, digital education masterclasses, and original book publishing.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="/publishing" class="px-7 py-3.5 rounded-xl bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] text-xs font-bold tracking-wider uppercase transition-all shadow-[0_0_25px_rgba(26,122,176,0.4)] border border-[#1A7AB0] hover:-translate-y-1">
+              Explore Publications →
+            </a>
+            <a href="/academy" class="px-7 py-3.5 rounded-xl bg-[#07121C]/80 border border-[#C9923A]/50 text-[#F3EFD8] hover:border-[#1A7AB0] hover:text-[#1A7AB0] text-xs font-bold tracking-wider uppercase transition-all backdrop-blur-sm shadow-md hover:-translate-y-1">
+              Join Masterclasses
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Showcase Stack -->
+        <div class="flex justify-center relative" role="img" aria-label="3D Stack of Original Books">
+          <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-2">
+            <div class="absolute w-72 h-72 bg-[#1A7AB0]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative w-full h-full flex items-center justify-center">
+              
+              <!-- Book 1: BLOODLIES -->
+              <a href="https://selar.com/j4z0n99rk4" target="_blank" rel="noopener noreferrer" class="absolute -left-2 top-10 w-36 h-52 bg-[#07121C] border border-[#C9923A]/40 rounded-r-lg shadow-2xl transform -rotate-12 hover:rotate-0 hover:scale-105 transition-all duration-500 p-4 flex flex-col justify-between cursor-pointer group">
+                <div class="border-l-2 border-[#C9923A] pl-2">
+                  <span class="text-[8px] text-[#C9923A] font-bold tracking-widest uppercase block">Novella</span>
+                  <h2 class="font-serif text-xs text-[#F3EFD8] font-bold leading-tight group-hover:text-[#1A7AB0] transition-colors">BLOODLIES</h2>
+                </div>
+                <span class="text-[8px] text-[#F3EFD8]/50 font-mono">IK'S ARCHIVE</span>
+              </a>
+
+              <!-- Book 2: UHỌNMHỌN -->
+              <a href="https://selar.com/tb15750g41" target="_blank" rel="noopener noreferrer" class="absolute -right-2 top-12 w-36 h-52 bg-[#8F3D1C] border border-[#C9923A]/50 rounded-l-lg shadow-2xl transform rotate-12 hover:rotate-0 hover:scale-105 transition-all duration-500 p-4 flex flex-col justify-between cursor-pointer group">
+                <div class="border-r-2 border-[#C9923A] pr-2 text-right">
+                  <span class="text-[8px] text-[#F3EFD8] font-bold tracking-widest uppercase block">Debut Novel</span>
+                  <h2 class="font-serif text-xs text-[#F3EFD8] font-bold leading-tight group-hover:text-[#C9923A] transition-colors">UHỌNMHỌN</h2>
+                </div>
+                <span class="text-[8px] text-[#F3EFD8]/80 font-mono text-right">OJO SUNDAY</span>
+              </a>
+
+              <!-- Main Center Device: VESSELS OF MERCY -->
+              <a href="https://selar.com/p65387k4vc" target="_blank" rel="noopener noreferrer" class="relative z-20 w-48 h-68 bg-[#07121C] border-2 border-[#1A7AB0] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] p-5 flex flex-col justify-between transform hover:scale-110 transition-all duration-500 cursor-pointer group">
+                <div class="flex justify-between items-center border-b border-[#0C5278] pb-2">
+                  <span class="inline-flex items-center gap-1.5 text-[8px] font-bold text-[#1A7AB0] bg-[#1A7AB0]/10 border border-[#1A7AB0]/30 px-2 py-0.5 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#1A7AB0] animate-pulse"></span>
+                    2026 RELEASE
+                  </span>
+                  <span class="text-[9px] text-[#C9923A] font-serif font-bold">IK'S</span>
+                </div>
+
+                <div class="my-auto text-center py-2">
+                  <div class="w-9 h-9 mx-auto mb-2 rounded-full bg-[#0C5278]/30 border border-[#1A7AB0] flex items-center justify-center text-[#1A7AB0]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                  </div>
+                  <h2 class="font-serif text-xs font-bold text-[#F3EFD8] leading-snug group-hover:text-[#1A7AB0] transition-colors">Vessels of Mercy</h2>
+                  <p class="text-[8px] text-[#C9923A] mt-1 font-medium">Original Release</p>
+                </div>
+
+                <div class="bg-[#0C5278]/40 rounded-lg p-2 border border-[#0C5278] text-[8px] text-[#F3EFD8] flex justify-between items-center">
+                  <span>Digital Edition</span>
+                  <span class="text-[#1A7AB0] font-bold">Selar →</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: CORE OPERATIONS SERVICES -->
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C] reveal-section" aria-labelledby="operations-heading">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-[#8F3D1C] text-xs font-bold tracking-[0.25em] uppercase block mb-2">
+            CORE OPERATIONS
+          </span>
+          <h2 id="operations-heading" class="font-serif text-3xl md:text-5xl font-bold text-[#07121C]">
+            Services & Operations
+          </h2>
+          <p class="text-xs md:text-sm text-[#07121C]/80 mt-3 leading-relaxed font-medium">
+            Bridging creative media production, digital education, book publishing, and innovation infrastructure.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <article class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-[#1A7AB0]/10 border border-[#1A7AB0]/30 flex items-center justify-center text-[#1A7AB0] font-serif font-bold text-lg mb-5 group-hover:bg-[#1A7AB0] group-hover:text-white transition-all">
+              01
+            </div>
+            <h3 class="font-serif font-bold text-lg text-[#07121C] mb-2 group-hover:text-[#1A7AB0] transition-colors">
+              Digital Publishing & Storytelling
+            </h3>
+            <p class="text-xs text-[#07121C]/80 leading-relaxed mb-6">
+              Publishing original novellas, ebooks, and novels (<em>UHỌNMHỌN</em>, <em>BLOODLIES</em>, <em>Father's Shadow</em>, <em>Vessels of Mercy</em>) via Selar, plus copywriting.
+            </p>
+            <span class="text-[10px] font-bold text-[#1A7AB0] uppercase tracking-wider block border-t border-slate-100 pt-3">• Ebooks & Novels • Selar Distribution</span>
+          </article>
+
+          <article class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-[#8F3D1C]/10 border border-[#8F3D1C]/30 flex items-center justify-center text-[#8F3D1C] font-serif font-bold text-lg mb-5 group-hover:bg-[#8F3D1C] group-hover:text-white transition-all">
+              02
+            </div>
+            <h3 class="font-serif font-bold text-lg text-[#07121C] mb-2 group-hover:text-[#8F3D1C] transition-colors">
+              Multimedia & Visual Content
+            </h3>
+            <p class="text-xs text-[#07121C]/80 leading-relaxed mb-6">
+              Professional media solutions including short-form video editing, graphic design, YouTube trailers, logo analysis, and brand campaigns.
+            </p>
+            <span class="text-[10px] font-bold text-[#8F3D1C] uppercase tracking-wider block border-t border-slate-100 pt-3">• Video Editing • Graphic Design • Branding</span>
+          </article>
+
+          <article class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-[#1A7AB0]/10 border border-[#1A7AB0]/30 flex items-center justify-center text-[#1A7AB0] font-serif font-bold text-lg mb-5 group-hover:bg-[#1A7AB0] group-hover:text-white transition-all">
+              03
+            </div>
+            <h3 class="font-serif font-bold text-lg text-[#07121C] mb-2 group-hover:text-[#1A7AB0] transition-colors">
+              AI & Digital Skills Education
+            </h3>
+            <p class="text-xs text-[#07121C]/80 leading-relaxed mb-6">
+              Hosting hands-on workshops covering AI prompt engineering, Canva graphic design, CapCut video editing, and content automation workflows.
+            </p>
+            <span class="text-[10px] font-bold text-[#1A7AB0] uppercase tracking-wider block border-t border-slate-100 pt-3">• AI Prompting • Canva • CapCut Workshops</span>
+          </article>
+
+          <article class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-[#8F3D1C]/10 border border-[#8F3D1C]/30 flex items-center justify-center text-[#8F3D1C] font-serif font-bold text-lg mb-5 group-hover:bg-[#8F3D1C] group-hover:text-white transition-all">
+              04
+            </div>
+            <h3 class="font-serif font-bold text-lg text-[#07121C] mb-2 group-hover:text-[#8F3D1C] transition-colors">
+              Academic & Youth Empowerment
+            </h3>
+            <p class="text-xs text-[#07121C]/80 leading-relaxed mb-6">
+              Academic tutoring, study guides, and youth mentorship designed to build practical, real-world digital capabilities.
+            </p>
+            <span class="text-[10px] font-bold text-[#8F3D1C] uppercase tracking-wider block border-t border-slate-100 pt-3">• Tutoring • Study Guides • Mentorship</span>
+          </article>
+
+          <article class="bg-white p-8 rounded-2xl border border-[#07121C]/10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group lg:col-span-2">
+            <div class="w-12 h-12 rounded-xl bg-[#1A7AB0]/10 border border-[#1A7AB0]/30 flex items-center justify-center text-[#1A7AB0] font-serif font-bold text-lg mb-5 group-hover:bg-[#1A7AB0] group-hover:text-white transition-all">
+              05
+            </div>
+            <h3 class="font-serif font-bold text-lg text-[#07121C] mb-2 group-hover:text-[#1A7AB0] transition-colors">
+              Resource & Business Hub (Warri Center)
+            </h3>
+            <p class="text-xs text-[#07121C]/80 leading-relaxed mb-6">
+              Expanding physical & digital infrastructure in Warri delivering document processing, high-speed printing, tech infrastructure access, and collaborative workspaces.
+            </p>
+            <span class="text-[10px] font-bold text-[#1A7AB0] uppercase tracking-wider block border-t border-slate-100 pt-3">• Document Processing • Printing • Workspaces</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED EBOOK PUBLICATIONS -->
+    <section class="bg-[#07121C] py-20 px-6 text-[#F3EFD8] border-t border-[#0C5278]/40 reveal-section">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-2">FEATURED PUBLICATIONS</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-bold text-[#F3EFD8]">Original Literary Catalog</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredBooks.map((book) => (
+            <div class={`${book.accentBg} border ${book.borderCol} rounded-2xl p-6 ${book.hoverBorder} transition-all hover:-translate-y-2 duration-300 group flex flex-col justify-between shadow-xl`}>
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] text-[#C9923A] font-bold tracking-widest uppercase">{book.category}</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded-full bg-[#1A7AB0]/20 text-[#1A7AB0] border border-[#1A7AB0]/30 font-bold uppercase">{book.badge}</span>
+                </div>
+                <h3 class="font-serif text-lg font-bold text-[#F3EFD8] mb-1 group-hover:text-[#1A7AB0] transition-colors">{book.title}</h3>
+                <p class="text-[10px] text-[#C9923A] italic mb-1">{book.subtitle}</p>
+                <p class="text-[9px] text-[#F3EFD8]/60 font-mono mb-3">By {book.author}</p>
+                <p class="text-xs text-[#F3EFD8]/70 leading-relaxed font-light">{book.description}</p>
+              </div>
+              <a 
+                href={book.selarUrl} 
+                target="_blank"
+                rel="noopener noreferrer" 
+                class="mt-6 text-xs text-[#1A7AB0] font-bold flex items-center gap-1 group-hover:translate-x-2 transition-transform"
+              >
+                Buy on Selar →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: YOUTUBE SHORTS VERTICAL VIDEO GALLERY -->
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C] reveal-section" aria-labelledby="video-section-heading">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="text-[#8F3D1C] text-xs font-bold tracking-[0.25em] uppercase block mb-2">
+              MULTIMEDIA CHANNEL
+            </span>
+            <h2 id="video-section-heading" class="font-serif text-3xl md:text-5xl font-bold text-[#07121C]">
+              Featured Shorts & Devotionals
+            </h2>
+          </div>
+          <a 
+            href="https://www.youtube.com/@ojosundayikponmownsa4782" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-bold text-[#1A7AB0] hover:text-[#8F3D1C] transition-colors uppercase tracking-wider"
+          >
+            Subscribe to YouTube Channel →
+          </a>
+        </div>
+
+        <!-- 5-Column Side-by-Side Smartphone Video Gallery -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {featuredVideos.map((video) => (
+            <div class="bg-[#07121C] rounded-2xl overflow-hidden shadow-2xl border border-[#C9923A]/30 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300">
+              
+              <!-- 9:16 Responsive Player Embed Container -->
+              <div class="relative w-full aspect-[9/16] bg-black">
+                <iframe 
+                  class="w-full h-full object-cover"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <!-- Clean Video Caption Banner -->
+              <div class="p-4 bg-[#07121C] text-[#F3EFD8] border-t border-[#0C5278]">
+                <span class="text-[9px] font-bold text-[#C9923A] tracking-wider uppercase block mb-1">
+                  {video.category}
+                </span>
+                <h3 class="font-serif text-xs font-bold text-[#F3EFD8] line-clamp-1 mb-1">
+                  {video.title}
+                </h3>
+                <p class="text-[10px] text-[#F3EFD8]/70 leading-normal font-light line-clamp-2">
+                  {video.description}
+                </p>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT & INQUIRY FORM -->
+    <section id="contact-section" class="relative bg-[#07121C] py-28 px-6 border-t border-[#0C5278]/50 overflow-hidden reveal-section" aria-labelledby="contact-heading">
+      
+      <div class="absolute top-1/2 right-10 w-[450px] h-[450px] bg-[#1A7AB0]/15 rounded-full blur-[130px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start relative z-10">
+        
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-3">
+              GET IN TOUCH
+            </span>
+            <h2 id="contact-heading" class="font-serif text-4xl md:text-5xl font-bold text-[#F3EFD8] leading-[1.15]">
+              Let's Build Something <span class="text-[#1A7AB0]">Meaningful.</span>
+            </h2>
+            <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light mt-4">
+              Whether you're looking to acquire original publications, join our AI & media masterclasses, or book infrastructure at the Warri Innovation Hub, reach out directly.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+              <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">📍</div>
+              <div>
+                <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Physical Center</span>
+                <span class="text-xs text-[#F3EFD8]">Warri, Delta State, Nigeria</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+              <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">✉️</div>
+              <div>
+                <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Direct Email</span>
+                <a href="mailto:info@iksarchive.com" class="text-xs text-[#F3EFD8] hover:text-[#1A7AB0] transition-colors">info@iksarchive.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+              <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">📞</div>
+              <div>
+                <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Direct Call / WhatsApp</span>
+                <a href="tel:+2348138662400" class="text-xs text-[#F3EFD8] hover:text-[#1A7AB0] transition-colors">+234 (0) 813 866 2400</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-[#0C5278]/30 border-2 border-[#1A7AB0]/40 rounded-2xl p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-md">
+          <form class="space-y-6" action="#" method="POST">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="full-name" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Full Name *</label>
+                <input 
+                  type="text" 
+                  id="full-name" 
+                  name="name" 
+                  required 
+                  placeholder="e.g. Chukwuma Adebayo"
+                  class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0] focus:ring-2 focus:ring-[#1A7AB0]/40 transition-all shadow-inner"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="email-address" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email-address" 
+                  name="email" 
+                  required 
+                  placeholder="e.g. name@domain.com"
+                  class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0] focus:ring-2 focus:ring-[#1A7AB0]/40 transition-all shadow-inner"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="service-type" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Service / Inquiry Area *</label>
+              <select 
+                id="service-type" 
+                name="service" 
+                required 
+                class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] text-xs focus:outline-none focus:border-[#1A7AB0] focus:ring-2 focus:ring-[#1A7AB0]/40 transition-all shadow-inner"
+              >
+                <option value="" disabled selected class="bg-[#07121C] text-[#F3EFD8]">Select an inquiry type...</option>
+                <option value="publishing" class="bg-[#07121C] text-[#F3EFD8]">Digital Books & Publishing Inquiries</option>
+                <option value="masterclass" class="bg-[#07121C] text-[#F3EFD8]">AI & Digital Education Masterclasses</option>
+                <option value="multimedia" class="bg-[#07121C] text-[#F3EFD8]">Video Editing & Branding Solutions</option>
+                <option value="warri-hub" class="bg-[#07121C] text-[#F3EFD8]">Warri Innovation Hub Booking</option>
+                <option value="general" class="bg-[#07121C] text-[#F3EFD8]">General Enterprise Contact</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="message-content" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Message *</label>
+              <textarea 
+                id="message-content" 
+                name="message" 
+                rows="4" 
+                required 
+                placeholder="Tell us about your project or inquiry..."
+                class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0] focus:ring-2 focus:ring-[#1A7AB0]/40 transition-all shadow-inner resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-4 rounded-xl bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] text-xs font-bold tracking-widest uppercase transition-all shadow-[0_0_25px_rgba(26,122,176,0.5)] border border-[#1A7AB0] hover:scale-[1.01]"
+            >
+              Send Message →
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: ENTERPRISE ABOUT OVERVIEW -->
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C] reveal-section" aria-labelledby="about-heading">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div class="bg-white border border-[#07121C]/10 rounded-2xl p-8 md:p-12 shadow-xl">
+          <span class="text-[#8F3D1C] text-xs font-bold tracking-[0.2em] uppercase block mb-3">ENTERPRISE OVERVIEW</span>
+          <h2 id="about-heading" class="font-serif text-3xl font-bold mb-4 text-[#07121C]">Bridging Creative Media & Education</h2>
+          <p class="text-xs text-[#07121C]/80 leading-relaxed font-medium mb-6">
+            IK'S ARCHIVE blends creative content production with digital skills training and community-focused learning across digital platforms and physical infrastructure in Warri, Nigeria.
+          </p>
+          <a href="/about" class="px-6 py-2.5 rounded-lg bg-[#1A7AB0] hover:bg-[#0C5278] text-white text-xs font-bold uppercase tracking-wider inline-block transition-transform hover:scale-105">
+            Learn More About Us
+          </a>
+        </div>
+
+        <div class="space-y-6">
+          <h2 class="font-serif text-3xl font-bold mb-6 text-[#07121C]">Why Choose IK'S ARCHIVE</h2>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-[#1A7AB0]/10 border border-[#1A7AB0] flex items-center justify-center text-[#1A7AB0] font-bold text-xs shrink-0">✓</div>
+            <div>
+              <h3 class="font-serif font-bold text-sm text-[#07121C]">Multi-Disciplinary Integration</h3>
+              <p class="text-xs text-[#07121C]/70 mt-1">Bringing book publishing, video editing, graphic design, and training into a single ecosystem.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-[#1A7AB0]/10 border border-[#1A7AB0] flex items-center justify-center text-[#1A7AB0] font-bold text-xs shrink-0">✓</div>
+            <div>
+              <h3 class="font-serif font-bold text-sm text-[#07121C]">Hands-On Workshops</h3>
+              <p class="text-xs text-[#07121C]/70 mt-1">Masterclasses focused on real-world tools: AI prompting, CapCut editing, and Canva design.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-[#1A7AB0]/10 border border-[#1A7AB0] flex items-center justify-center text-[#1A7AB0] font-bold text-xs shrink-0">✓</div>
+            <div>
+              <h3 class="font-serif font-bold text-sm text-[#07121C]">Warri Innovation Hub</h3>
+              <p class="text-xs text-[#07121C]/70 mt-1">Building community access to document processing, tech hardware, and workspaces in Delta State.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <AIChatbot />
+
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-section').forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
+
+<style>
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-section.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

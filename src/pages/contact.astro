@@ -1,0 +1,124 @@
+---
+// src/pages/contact.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
+---
+
+<Layout 
+  title="Contact Us & Inquiries | IK'S ARCHIVE Warri"
+  description="Get in touch with IK'S ARCHIVE for book publishing submissions, AI masterclasses, video production, or Warri Innovation Hub bookings."
+>
+  <main class="bg-[#07121C] py-20 px-6 text-[#F3EFD8]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Contact Info -->
+      <div class="lg:col-span-5 space-y-8">
+        <div>
+          <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-3">GET IN TOUCH</span>
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#F3EFD8] leading-[1.15]">
+            Let's Build Something <span class="text-[#1A7AB0]">Meaningful.</span>
+          </h1>
+          <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light mt-4">
+            Whether you're looking to acquire original publications, join our masterclass cohorts, or book infrastructure at the Warri Innovation Hub, reach out directly.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+            <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">📍</div>
+            <div>
+              <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Physical Center</span>
+              <span class="text-xs text-[#F3EFD8]">Warri, Delta State, Nigeria</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+            <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">✉️</div>
+            <div>
+              <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Direct Email</span>
+              <a href="mailto:info@iksarchive.com" class="text-xs text-[#F3EFD8] hover:text-[#1A7AB0] transition-colors">info@iksarchive.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-[#0C5278]/20 border border-[#1A7AB0]/30 shadow-md">
+            <div class="w-10 h-10 rounded-lg bg-[#1A7AB0]/20 border border-[#1A7AB0]/40 flex items-center justify-center text-[#1A7AB0] text-base shrink-0">📞</div>
+            <div>
+              <span class="text-[#C9923A] font-bold uppercase block text-[10px] tracking-wider">Direct Call / WhatsApp</span>
+              <a href="tel:+2348138662400" class="text-xs text-[#F3EFD8] hover:text-[#1A7AB0] transition-colors">+234 (0) 813 866 2400</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-7 bg-[#0C5278]/30 border-2 border-[#1A7AB0]/40 rounded-2xl p-8 md:p-10 shadow-2xl backdrop-blur-md">
+        <form class="space-y-6" action="#" method="POST">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="full-name" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Full Name *</label>
+              <input 
+                type="text" 
+                id="full-name" 
+                name="name" 
+                required 
+                placeholder="e.g. Chukwuma Adebayo"
+                class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0]"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="email-address" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Email Address *</label>
+              <input 
+                type="email" 
+                id="email-address" 
+                name="email" 
+                required 
+                placeholder="e.g. name@domain.com"
+                class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0]"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="service-type" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Service / Inquiry Area *</label>
+            <select 
+              id="service-type" 
+              name="service" 
+              required 
+              class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] text-xs focus:outline-none focus:border-[#1A7AB0]"
+            >
+              <option value="" disabled selected class="bg-[#07121C]">Select an inquiry type...</option>
+              <option value="publishing" class="bg-[#07121C]">Digital Books & Publishing Inquiries</option>
+              <option value="masterclass" class="bg-[#07121C]">AI & Digital Education Masterclasses</option>
+              <option value="multimedia" class="bg-[#07121C]">Video Editing & Branding Solutions</option>
+              <option value="warri-hub" class="bg-[#07121C]">Warri Innovation Hub Booking</option>
+              <option value="general" class="bg-[#07121C]">General Enterprise Contact</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="message-content" class="block text-[11px] font-bold text-[#C9923A] uppercase tracking-wider">Message *</label>
+            <textarea 
+              id="message-content" 
+              name="message" 
+              rows="4" 
+              required 
+              placeholder="Tell us about your project or inquiry..."
+              class="w-full px-4 py-3.5 rounded-xl bg-[#07121C] border border-[#1A7AB0]/50 text-[#F3EFD8] placeholder-[#F3EFD8]/40 text-xs focus:outline-none focus:border-[#1A7AB0] resize-none"
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-4 rounded-xl bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] text-xs font-bold tracking-widest uppercase transition-all shadow-lg border border-[#1A7AB0]"
+          >
+            Send Message →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <AIChatbot />
+</Layout>

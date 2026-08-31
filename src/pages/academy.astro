@@ -1,0 +1,209 @@
+---
+// src/pages/academy.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
+// Tiered Pricing Data
+const masterclassTiers = [
+  {
+    tier: "Tier 1",
+    name: "Group Masterclass (Cohort Style)",
+    duration: "1 Week (7 Days Intensive)",
+    earlyBirdFee: "₦5,000",
+    standardFee: "₦10,000",
+    format: "Private WhatsApp / Telegram Group + Live Demos + Daily Practical Assignments",
+    bestFor: "Beginners, students, emerging creators, and small business owners looking to learn core workflows quickly.",
+    badge: "Cohort Style",
+    accent: "border-[#1A7AB0]",
+    btnStyle: "bg-[#1A7AB0] hover:bg-[#0C5278]"
+  },
+  {
+    tier: "Tier 2",
+    name: "1-on-1 Private Executive Coaching",
+    duration: "2 Weeks (14 Days Hands-On)",
+    investmentFee: "₦80,000",
+    format: "Direct 1-on-1 Mentorship, Personalized Project Reviews, Customized Brand Assets, and Direct Call/Screen-Share Support",
+    bestFor: "Business owners, executives, agency creators, and professionals wanting tailored, dedicated guidance.",
+    badge: "Executive Coaching",
+    accent: "border-[#C9923A]",
+    btnStyle: "bg-[#8F3D1C] hover:bg-[#702F15]"
+  }
+];
+
+// Core Skill Tracks
+const skillTracks = [
+  {
+    title: "AI Prompt Engineering & Automation",
+    topics: ["Prompt Scaffolding & Engineering", "ChatGPT & Claude Workflows", "Content Automation Pipelines", "Custom AI Assistants Setup"]
+  },
+  {
+    title: "CapCut Video Editing & Short-Form Reels",
+    topics: ["Timeline Editing & Trimming", "Keyframing & Motion Graphics", "Auto-Captions & Sound Effects", "Shorts & Reels Optimization"]
+  },
+  {
+    title: "Canva Visual Branding & Graphic Design",
+    topics: ["Brand Kit Setup", "Typography & Layout Hierarchy", "Social Media Graphics & Flyers", "Automated Design Templates"]
+  },
+  {
+    title: "Digital Publishing & Selar Distribution",
+    topics: ["Manuscript Formatting (Ebooks & PDFs)", "Book Cover Graphics & Mockups", "Selar Store & Payment Gateway", "Sales Copywriting & Funnels"]
+  }
+];
+
+// Academic & Youth Empowerment Pillars
+const youthPillars = [
+  {
+    icon: "📚",
+    title: "Academic Tutoring & Exam Prep",
+    desc: "Intensive coaching and comprehensive study materials for secondary and tertiary students across key subjects (Chemistry, Physics, Mathematics, Biology, Economics, and English)."
+  },
+  {
+    icon: "💻",
+    title: "Digital Literacy & Tech Mentorship",
+    desc: "Hands-on training introducing young learners to basic AI literacy, visual design, smartphone content creation, and online safety."
+  },
+  {
+    icon: "🚀",
+    title: "Youth Workshops & Empowerment",
+    desc: "Interactive seminars focused on career guidance, critical thinking, soft skills, personal branding, and self-reliance."
+  },
+  {
+    icon: "📄",
+    title: "Educational Resources & Formula Guides",
+    desc: "Curated revision notes, simplified formula breakdowns, and structured practice exam question banks to boost academic confidence."
+  }
+];
+---
+
+<Layout 
+  title="Digital Academy & Youth Empowerment | IK'S ARCHIVE Warri"
+  description="Master AI prompting, CapCut editing, Canva design, and digital publishing. Explore academic tutoring and youth empowerment programs at IK'S ARCHIVE."
+>
+  <main>
+    <section class="bg-[#07121C] py-20 px-6 border-b border-[#0C5278]/40 text-center">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block">PRACTICAL SKILLS & ACADEMIC EXCELLENCE</span>
+        <h1 class="font-serif text-4xl md:text-6xl font-bold text-[#F3EFD8]">Digital Academy & Mentorship</h1>
+        <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light max-w-2xl mx-auto">
+          Bridging classroom learning and practical digital skills to build self-reliant creators, students, and enterprise leaders.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C]">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-[#8F3D1C] text-xs font-bold tracking-[0.25em] uppercase block mb-2">TRAINING STRUCTURE</span>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold">Masterclass Membership Tiers</h2>
+          <p class="text-xs md:text-sm text-[#07121C]/80 mt-2">Choose between intensive cohort learning or dedicated 1-on-1 executive mentorship.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {masterclassTiers.map((tier) => (
+            <div class={`bg-white border-2 ${tier.accent} rounded-2xl p-8 shadow-xl flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 relative`}>
+              <div>
+                <div class="flex justify-between items-center mb-4">
+                  <span class="px-3 py-1 rounded-full bg-[#07121C] text-[#F3EFD8] text-[9px] font-bold uppercase tracking-wider">{tier.tier}</span>
+                  <span class="text-xs font-mono font-bold text-[#8F3D1C]">{tier.duration}</span>
+                </div>
+
+                <h3 class="font-serif text-2xl font-bold text-[#07121C] mb-2">{tier.name}</h3>
+                
+                <div class="my-6 p-4 rounded-xl bg-[#F3EFD8]/50 border border-[#07121C]/10 space-y-2">
+                  {tier.earlyBirdFee && (
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="text-[#07121C]/70 font-semibold">Early-Bird Fee:</span>
+                      <span class="font-serif font-bold text-base text-[#1A7AB0]">{tier.earlyBirdFee}</span>
+                    </div>
+                  )}
+                  {tier.standardFee && (
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="text-[#07121C]/70 font-semibold">Standard Fee:</span>
+                      <span class="font-mono font-bold text-[#07121C]">{tier.standardFee}</span>
+                    </div>
+                  )}
+                  {tier.investmentFee && (
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="text-[#07121C]/70 font-semibold">Investment Fee:</span>
+                      <span class="font-serif font-bold text-xl text-[#8F3D1C]">{tier.investmentFee}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div class="space-y-4 mb-8">
+                  <div>
+                    <span class="text-[10px] font-bold text-[#C9923A] uppercase tracking-wider block mb-1">Learning Format</span>
+                    <p class="text-xs text-[#07121C]/80 leading-relaxed font-medium">{tier.format}</p>
+                  </div>
+                  <div>
+                    <span class="text-[10px] font-bold text-[#1A7AB0] uppercase tracking-wider block mb-1">Best For</span>
+                    <p class="text-xs text-[#07121C]/75 leading-relaxed font-light">{tier.bestFor}</p>
+                  </div>
+                </div>
+              </div>
+
+              <a 
+                href="/contact" 
+                class={`w-full text-center py-3.5 rounded-xl text-[#F3EFD8] text-xs font-bold tracking-widest uppercase transition-all shadow-md ${tier.btnStyle}`}
+              >
+                Enroll in {tier.tier} →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#07121C] py-20 px-6 text-[#F3EFD8] border-t border-[#0C5278]/40">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block mb-2">CURRICULUM OVERVIEW</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-bold">Practical Masterclass Modules</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillTracks.map((track) => (
+            <div class="bg-[#0C5278]/20 border border-[#1A7AB0]/30 rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="font-serif text-lg font-bold text-[#F3EFD8] mb-4 border-b border-[#0C5278] pb-3">{track.title}</h3>
+                <ul class="space-y-2 mb-6">
+                  {track.topics.map((topic) => (
+                    <li class="flex items-center gap-2 text-xs text-[#F3EFD8]/80 font-light">
+                      <span class="text-[#1A7AB0] font-bold">✓</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C]">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-[#8F3D1C] text-xs font-bold tracking-[0.25em] uppercase block">COMMUNITY & EDUCATION</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-bold">Academic & Youth Empowerment</h2>
+          <p class="text-xs md:text-sm text-[#07121C]/80 leading-relaxed font-medium">
+            Bridging classroom learning with digital skills to raise confident, self-reliant, future-ready young leaders.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {youthPillars.map((pillar) => (
+            <div class="bg-white p-6 rounded-2xl border border-[#07121C]/10 shadow-lg flex flex-col justify-between">
+              <div>
+                <div class="text-3xl mb-4">{pillar.icon}</div>
+                <h3 class="font-serif text-lg font-bold text-[#07121C] mb-2">{pillar.title}</h3>
+                <p class="text-xs text-[#07121C]/75 leading-relaxed font-light">{pillar.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <AIChatbot />
+</Layout>

@@ -1,0 +1,104 @@
+---
+// src/pages/publishing.astro
+import Layout from '../layouts/Layout.astro';
+import AIChatbot from '../components/AI Chatbot.astro';
+
+const featuredBooks = [
+  {
+    title: "UHỌNMHỌN",
+    subtitle: "Life is Greater Than Possession",
+    author: "Ojo Sunday Ikponmwonsa",
+    category: "Fiction / Debut Novel",
+    description: "Moving from rural poverty in Edo land to the unforgiving streets of Rome, Italy, this story explores a family's desperate pursuit of wealth through a dark spiritual covenant.",
+    selarUrl: "https://selar.com/tb15750g41",
+    badge: "Debut Novel",
+    accentBg: "bg-[#8F3D1C]/20",
+    borderCol: "border-[#8F3D1C]/60",
+    hoverBorder: "hover:border-[#8F3D1C]"
+  },
+  {
+    title: "BLOODLIES",
+    subtitle: "A Novella of Family, Mischief, and the Meaning of Blood",
+    author: "IK'S ARCHIVE Press",
+    category: "PDF eBook",
+    description: "Every family has secrets. Caught between a stern father and protective mother, Tomiwa's life unravels when a stranger claims to be his true biological father.",
+    selarUrl: "https://selar.com/j4z0n99rk4",
+    badge: "Bestseller",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#C9923A]/40",
+    hoverBorder: "hover:border-[#1A7AB0]"
+  },
+  {
+    title: "FATHER'S SHADOW",
+    subtitle: "A Novella of Inheritance, Rage, and Redemption",
+    author: "IK'S ARCHIVE Press",
+    category: "Novella",
+    description: "When three generations of the Erhabor family converge at the police station in Effurun, decades of buried domestic trauma and rage break wide open.",
+    selarUrl: "https://selar.com/3g88328sy7",
+    badge: "Featured",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#1A7AB0]/40",
+    hoverBorder: "hover:border-[#1A7AB0]"
+  },
+  {
+    title: "VESSELS OF MERCY",
+    subtitle: "A Novella of Grace, Regret, and Restoration",
+    author: "IK'S ARCHIVE Press",
+    category: "2026 Release",
+    description: "Set in Warri, following Tamar and Caro—two women who make the same mistake at sixteen and take two entirely different roads toward grace and restoration.",
+    selarUrl: "https://selar.com/p65387k4vc",
+    badge: "Selar Press",
+    accentBg: "bg-[#0C5278]/20",
+    borderCol: "border-[#C9923A]/50",
+    hoverBorder: "hover:border-[#C9923A]"
+  }
+];
+---
+
+<Layout 
+  title="Digital Book Publishing & Catalog | IK'S ARCHIVE Warri"
+  description="Explore original ebooks and novels published by IK'S ARCHIVE Press, including UHỌNMHỌN, BLOODLIES, Father's Shadow, and Vessels of Mercy."
+>
+  <main>
+    <section class="bg-[#07121C] py-20 px-6 border-b border-[#0C5278]/40">
+      <div class="max-w-4xl mx-auto text-center space-y-4">
+        <span class="text-[#C9923A] text-xs font-bold tracking-[0.25em] uppercase block">ORIGINAL LITERARY CATALOG</span>
+        <h1 class="font-serif text-4xl md:text-6xl font-bold text-[#F3EFD8]">Digital Publishing</h1>
+        <p class="text-xs md:text-sm text-[#F3EFD8]/80 leading-relaxed font-light max-w-2xl mx-auto">
+          Discover original novels, novellas, and ebooks published by IK'S ARCHIVE Press and distributed seamlessly via Selar.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[#F3EFD8] py-20 px-6 text-[#07121C]">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredBooks.map((book) => (
+            <div class={`bg-white border ${book.borderCol} rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between shadow-xl`}>
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] text-[#C9923A] font-bold tracking-widest uppercase">{book.category}</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded-full bg-[#1A7AB0]/10 text-[#1A7AB0] border border-[#1A7AB0]/30 font-bold uppercase">{book.badge}</span>
+                </div>
+                <h2 class="font-serif text-lg font-bold text-[#07121C] mb-1 group-hover:text-[#1A7AB0] transition-colors">{book.title}</h2>
+                <p class="text-[10px] text-[#8F3D1C] italic mb-1">{book.subtitle}</p>
+                <p class="text-[9px] text-[#07121C]/60 font-mono mb-3">By {book.author}</p>
+                <p class="text-xs text-[#07121C]/75 leading-relaxed font-light">{book.description}</p>
+              </div>
+              <a 
+                href={book.selarUrl} 
+                target="_blank"
+                rel="noopener noreferrer" 
+                class="mt-6 text-xs text-[#1A7AB0] font-bold flex items-center gap-1 group-hover:translate-x-2 transition-transform uppercase"
+              >
+                Buy on Selar →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <AIChatbot />
+</Layout>
