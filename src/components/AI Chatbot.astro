@@ -2,11 +2,11 @@
 // src/components/AIChatbot.astro
 ---
 
-<!-- Floating Trigger Button -->
-<div class="fixed bottom-6 right-6 z-50">
+<!-- Floating Trigger Button (Positioned above WhatsApp and Netlify mobile badge) -->
+<div class="fixed bottom-28 right-4 sm:right-6 z-50">
   <button 
     id="chat-toggle-btn"
-    class="w-14 h-14 rounded-full bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] flex items-center justify-center shadow-[0_0_25px_rgba(26,122,176,0.6)] border-2 border-[#C9923A] transition-all hover:scale-110 group focus:outline-none"
+    class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] flex items-center justify-center shadow-[0_0_25px_rgba(26,122,176,0.6)] border-2 border-[#C9923A] transition-all hover:scale-110 group focus:outline-none"
     aria-label="Open AI Assistant"
   >
     <svg id="chat-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +21,7 @@
 <!-- Chat Window Modal -->
 <div 
   id="chat-window" 
-  class="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-[#07121C] border-2 border-[#1A7AB0]/50 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden hidden flex-col transition-all backdrop-blur-md"
+  class="fixed bottom-44 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 bg-[#07121C] border-2 border-[#1A7AB0]/50 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden hidden flex-col transition-all backdrop-blur-md max-h-[70vh]"
   style="background-color: #07121C !important;"
 >
   <!-- Header -->
@@ -39,7 +39,7 @@
   </div>
 
   <!-- Messages Container -->
-  <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-xs text-[#F3EFD8]/90 font-light scroll-smooth">
+  <div id="chat-messages" class="p-4 h-72 sm:h-80 overflow-y-auto space-y-3 text-xs text-[#F3EFD8]/90 font-light scroll-smooth">
     <div class="bg-[#0C5278]/30 border border-[#1A7AB0]/20 p-3 rounded-xl max-w-[85%] leading-relaxed">
       Hello! 👋 I am the official AI assistant for <strong>IK'S ARCHIVE</strong>. How can I assist you today regarding our original books, AI masterclasses, or Warri Innovation Hub services?
     </div>
