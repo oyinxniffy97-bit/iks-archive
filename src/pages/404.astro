@@ -1,0 +1,27 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Page Not Found | IK'S ARCHIVE"
+  description="The page you are looking for does not exist or has been moved."
+>
+  <main style="background-color: #07121C !important;" class="min-h-screen flex items-center justify-center px-6 py-24 text-center">
+    <div class="max-w-md space-y-6">
+      <div class="w-20 h-20 mx-auto rounded-full bg-[#1A7AB0]/20 border border-[#C9923A] flex items-center justify-center text-[#C9923A] font-serif font-bold text-3xl shadow-xl">
+        404
+      </div>
+      <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#F3EFD8]">Page Not Found</h1>
+      <p class="text-xs md:text-sm text-[#F3EFD8]/70 leading-relaxed font-light">
+        The publication, page, or resource you were looking for is unavailable or has been relocated.
+      </p>
+      <a 
+        href="/" 
+        class="inline-block px-7 py-3.5 rounded-xl bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] text-xs font-bold tracking-wider uppercase transition-all shadow-[0_0_25px_rgba(26,122,176,0.4)] border border-[#1A7AB0]"
+      >
+        ← Return to Homepage
+      </a>
+    </div>
+  </main>
+</Layout>

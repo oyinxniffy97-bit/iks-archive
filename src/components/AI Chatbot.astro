@@ -4,98 +4,144 @@
 
 <!-- Floating Trigger Button -->
 <div class="fixed bottom-6 right-6 z-50">
-	<button 
-		id="chat-toggle-btn"
-		class="w-14 h-14 rounded-full bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] flex items-center justify-center shadow-[0_0_25px_rgba(26,122,176,0.6)] border-2 border-[#C9923A] transition-all hover:scale-110 group"
-		aria-label="Open AI Assistant"
-	>
-		<svg id="chat-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-		</svg>
-		<svg id="chat-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-		</svg>
-	</button>
+  <button 
+    id="chat-toggle-btn"
+    class="w-14 h-14 rounded-full bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] flex items-center justify-center shadow-[0_0_25px_rgba(26,122,176,0.6)] border-2 border-[#C9923A] transition-all hover:scale-110 group focus:outline-none"
+    aria-label="Open AI Assistant"
+  >
+    <svg id="chat-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+    </svg>
+    <svg id="chat-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
 </div>
 
 <!-- Chat Window Modal -->
 <div 
-	id="chat-window" 
-	class="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-[#07121C] border-2 border-[#1A7AB0]/50 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden hidden flex-col transition-all"
+  id="chat-window" 
+  class="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-[#07121C] border-2 border-[#1A7AB0]/50 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] overflow-hidden hidden flex-col transition-all backdrop-blur-md"
+  style="background-color: #07121C !important;"
 >
-	<!-- Header -->
-	<div class="bg-[#0C5278]/40 border-b border-[#1A7AB0]/30 p-4 flex items-center gap-3">
-		<div class="w-8 h-8 rounded-full bg-[#1A7AB0] flex items-center justify-center text-white font-bold text-xs">
-			AI
-		</div>
-		<div>
-			<h4 class="text-xs font-bold text-[#F3EFD8]">IK'S ARCHIVE Assistant</h4>
-			<span class="text-[9px] text-[#C9923A] font-medium uppercase tracking-wider">Online • Automated Support</span>
-		</div>
-	</div>
+  <!-- Header -->
+  <div class="bg-[#0C5278]/40 border-b border-[#1A7AB0]/30 p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-[#1A7AB0] border border-[#C9923A] flex items-center justify-center text-white font-bold text-xs">
+        AI
+      </div>
+      <div>
+        <h4 class="text-xs font-bold text-[#F3EFD8]">IK'S ARCHIVE Assistant</h4>
+        <span class="text-[9px] text-[#C9923A] font-medium uppercase tracking-wider">Online • Automated Support</span>
+      </div>
+    </div>
+    <button id="close-chat-x" class="text-[#F3EFD8]/60 hover:text-[#F3EFD8] text-xs p-1">✕</button>
+  </div>
 
-	<!-- Messages Container -->
-	<div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-xs text-[#F3EFD8]/90 font-light">
-		<div class="bg-[#0C5278]/30 border border-[#1A7AB0]/20 p-3 rounded-xl max-w-[85%]">
-			Hello! I am the official AI assistant for IK'S ARCHIVE. How can I help you today regarding our original books, AI masterclasses, or Warri Hub services?
-		</div>
-	</div>
+  <!-- Messages Container -->
+  <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-xs text-[#F3EFD8]/90 font-light scroll-smooth">
+    <div class="bg-[#0C5278]/30 border border-[#1A7AB0]/20 p-3 rounded-xl max-w-[85%] leading-relaxed">
+      Hello! 👋 I am the official AI assistant for <strong>IK'S ARCHIVE</strong>. How can I assist you today regarding our original books, AI masterclasses, or Warri Innovation Hub services?
+    </div>
+  </div>
 
-	<!-- Input Area -->
-	<form id="chat-form" class="p-3 border-t border-[#1A7AB0]/30 bg-[#07121C] flex gap-2">
-		<input 
-			type="text" 
-			id="chat-input" 
-			placeholder="Ask about books, classes, or hub..." 
-			required
-			class="flex-1 bg-[#0C5278]/20 border border-[#1A7AB0]/40 rounded-xl px-3 py-2 text-xs text-[#F3EFD8] placeholder-[#F3EFD8]/40 focus:outline-none focus:border-[#1A7AB0]"
-		/>
-		<button 
-			type="submit" 
-			class="px-3 py-2 bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] font-bold text-xs rounded-xl transition-all"
-		>
-			Send
-		</button>
-	</form>
+  <!-- Input Area -->
+  <form id="chat-form" class="p-3 border-t border-[#1A7AB0]/30 bg-[#07121C] flex gap-2" style="background-color: #07121C !important;">
+    <input 
+      type="text" 
+      id="chat-input" 
+      placeholder="Ask about books, masterclasses, or hub..." 
+      required
+      class="flex-1 bg-[#0A1D2D] border border-[#1A7AB0]/40 rounded-xl px-3 py-2 text-xs text-[#F3EFD8] placeholder-[#F3EFD8]/40 focus:outline-none focus:border-[#1A7AB0]"
+    />
+    <button 
+      type="submit" 
+      class="px-4 py-2 bg-[#1A7AB0] hover:bg-[#0C5278] text-[#F3EFD8] font-bold text-xs rounded-xl transition-all border border-[#1A7AB0] shrink-0"
+    >
+      Send
+    </button>
+  </form>
 </div>
 
 <script>
-	const toggleBtn = document.getElementById('chat-toggle-btn');
-	const chatWindow = document.getElementById('chat-window');
-	const iconOpen = document.getElementById('chat-icon-open');
-	const iconClose = document.getElementById('chat-icon-close');
-	const chatForm = document.getElementById('chat-form');
-	const chatInput = document.getElementById('chat-input') as HTMLInputElement;
-	const chatMessages = document.getElementById('chat-messages');
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('chat-toggle-btn');
+    const closeX = document.getElementById('close-chat-x');
+    const chatWindow = document.getElementById('chat-window');
+    const iconOpen = document.getElementById('chat-icon-open');
+    const iconClose = document.getElementById('chat-icon-close');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+    const chatMessages = document.getElementById('chat-messages');
 
-	toggleBtn?.addEventListener('click', () => {
-		chatWindow?.classList.toggle('hidden');
-		chatWindow?.classList.toggle('flex');
-		iconOpen?.classList.toggle('hidden');
-		iconClose?.classList.toggle('hidden');
-	});
+    // Toggle Chat Visibility
+    function toggleChat() {
+      if (!chatWindow) return;
+      const isHidden = chatWindow.classList.contains('hidden');
+      
+      if (isHidden) {
+        chatWindow.classList.remove('hidden');
+        chatWindow.classList.add('flex');
+        iconOpen?.classList.add('hidden');
+        iconClose?.classList.remove('hidden');
+        chatInput?.focus();
+      } else {
+        chatWindow.classList.add('hidden');
+        chatWindow.classList.remove('flex');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      }
+    }
 
-	chatForm?.addEventListener('submit', (e) => {
-		e.preventDefault();
-		const message = chatInput?.value.trim();
-		if (!message || !chatMessages) return;
+    toggleBtn?.addEventListener('click', toggleChat);
+    closeX?.addEventListener('click', toggleChat);
 
-		// Append user message
-		const userMsg = document.createElement('div');
-		userMsg.className = 'bg-[#1A7AB0] text-white p-3 rounded-xl max-w-[85%] ml-auto text-xs';
-		userMsg.textContent = message;
-		chatMessages.appendChild(userMsg);
+    // Intelligent Keyword-Based Response Engine
+    function getBotReply(text: string): string {
+      const q = text.toLowerCase();
 
-		chatInput.value = '';
-		chatMessages.scrollTop = chatMessages.scrollHeight;
+      if (q.includes('book') || q.includes('selar') || q.includes('novel') || q.includes('bloodlies') || q.includes('vessels') || q.includes('waiting') || q.includes('shadow')) {
+        return "Our literary catalog includes original novellas like 'BLOODLIES', 'Vessels of Mercy', 'Father's Shadow', and 'Still Waiting'. You can acquire them directly via Selar on our Publishing page!";
+      }
 
-		// Simulated AI Response (Replace with API fetch to OpenAI/Gemini)
-		setTimeout(() => {
-			const aiMsg = document.createElement('div');
-			aiMsg.className = 'bg-[#0C5278]/30 border border-[#1A7AB0]/20 p-3 rounded-xl max-w-[85%] text-xs';
-			aiMsg.textContent = "Thank you for reaching out! You can explore our publications like 'The Theater of Mercy' or book a session at the Warri Innovation Hub directly through our contact form.";
-			chatMessages.appendChild(aiMsg);
-			chatMessages.scrollTop = chatMessages.scrollHeight;
-		}, 800);
-	});
+      if (q.includes('class') || q.includes('academy') || q.includes('masterclass') || q.includes('ai') || q.includes('canva') || q.includes('capcut') || q.includes('learn')) {
+        return "We host hands-on workshops covering AI Prompt Engineering, Canva Graphic Design, and CapCut Video Editing. Explore course details on our Academy page!";
+      }
+
+      if (q.includes('warri') || q.includes('hub') || q.includes('print') || q.includes('document') || q.includes('space') || q.includes('office')) {
+        return "The Warri Innovation Hub provides document processing, high-speed printing, tech infrastructure access, and collaborative workspaces in Delta State.";
+      }
+
+      if (q.includes('contact') || q.includes('call') || q.includes('phone') || q.includes('whatsapp') || q.includes('email') || q.includes('number')) {
+        return "You can reach us directly via WhatsApp/Call at +234 (0) 813 866 2400 or email info@iksarchive.com.";
+      }
+
+      return "Thank you for reaching out! You can submit a direct message using the contact form on this page or call our team at +234 (0) 813 866 2400.";
+    }
+
+    // Submit Handler
+    chatForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userMessage = chatInput?.value.trim();
+      if (!userMessage || !chatMessages) return;
+
+      // 1. Append User Message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'bg-[#1A7AB0] text-[#F3EFD8] p-3 rounded-xl max-w-[85%] ml-auto text-xs leading-relaxed shadow-sm';
+      userMsg.textContent = userMessage;
+      chatMessages.appendChild(userMsg);
+
+      chatInput.value = '';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // 2. Append Automated Bot Response after 500ms
+      setTimeout(() => {
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'bg-[#0C5278]/30 border border-[#1A7AB0]/20 p-3 rounded-xl max-w-[85%] text-xs text-[#F3EFD8] leading-relaxed shadow-sm';
+        aiMsg.innerHTML = getBotReply(userMessage);
+        chatMessages.appendChild(aiMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+    });
+  });
 </script>
